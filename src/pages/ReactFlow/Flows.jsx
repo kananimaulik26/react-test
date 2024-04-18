@@ -7,6 +7,7 @@ import ReactFlow, {
   applyEdgeChanges,
   BackgroundVariant,
   BaseEdge,
+  addEdge,
 } from "reactflow";
 import "reactflow/dist/style.css";
 
@@ -25,10 +26,10 @@ const initialNodes = [
 ];
 
 const initialEdges = [
-  { id: "e1-2", source: "1", target: "2", animated:true},
-  { id: "e2-3", source: "2", target: "3", animated:true },
-  { id: "e3-4", source: "3", target: "4", animated:true },
-  { id: "e4-5", source: "4", target: "5", animated:true },
+  { id: "e1-2", source: "1", target: "2", animated: true },
+  { id: "e2-3", source: "2", target: "3", animated: true },
+  { id: "e3-4", source: "3", target: "4", animated: true },
+  { id: "e4-5", source: "4", target: "5", animated: true },
 ];
 
 function Flow() {
@@ -45,6 +46,7 @@ function Flow() {
     (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
     []
   );
+  const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
 
   const [{ canDrop, isOver }, dropRef] = useDrop(() => ({
     accept: "box",
@@ -86,6 +88,7 @@ function Flow() {
           onNodesChange={onNodesChange}
           edges={edges}
           onEdgesChange={onEdgesChange}
+          onConnect={onConnect}
           fitView
         >
           <Background

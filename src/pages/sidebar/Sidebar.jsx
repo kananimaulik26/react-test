@@ -18,19 +18,25 @@ function Sidebar() {
     {
       id: "3",
       data: { label: "Command 3" },
-      position: { x: 250, y: 250 },
+      position: { x: 100, y: 200 },
       type: "box",
     },
     {
       id: "4",
       data: { label: "Command 4" },
-      position: { x: 250, y: 250 },
+      position: { x: 100, y: 300 },
       type: "box",
     },
     {
       id: "5",
       data: { label: "Command 5" },
-      position: { x: 250, y: 250 },
+      position: { x: 100, y: 400 },
+      type: "box",
+    },
+    {
+      id: "6",
+      data: { label: "Command 6" },
+      position: { x: 100, y: 500 },
       type: "box",
     },
   ];

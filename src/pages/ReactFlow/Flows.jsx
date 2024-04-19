@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback } from "react";
 import { useDrop } from "react-dnd";
 import ReactFlow, {
   Controls,
@@ -11,20 +11,6 @@ import ReactFlow, {
 } from "reactflow";
 import "reactflow/dist/style.css";
 
-const initialNodes = [
-  {
-    id: "1",
-    data: { label: "Hello" },
-    position: { x: 0, y: 0 },
-    type: "box",
-  },
-  {
-    id: "2",
-    data: { label: "World" },
-    position: { x: 100, y: 100 },
-  },
-];
-
 const initialEdges = [
   { id: "e1-2", source: "1", target: "2", animated: true },
   { id: "e2-3", source: "2", target: "3", animated: true },
@@ -33,8 +19,6 @@ const initialEdges = [
 ];
 
 function Flow() {
-  const layreref = useRef();
-  console.log("✌️layreref --->", layreref.current);
   const [nodes, setNodes] = useState([]);
   const [edges, setEdges] = useState(initialEdges);
 
@@ -46,7 +30,10 @@ function Flow() {
     (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
     []
   );
-  const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
+  const onConnect = useCallback(
+    (params) => setEdges((eds) => addEdge(params, eds)),
+    [setEdges]
+  );
 
   const [{ canDrop, isOver }, dropRef] = useDrop(() => ({
     accept: "box",
@@ -83,7 +70,6 @@ function Flow() {
       </div>
       <div ref={dropRef} style={{ height: "100%", width: "100%" }}>
         <ReactFlow
-          ref={layreref}
           nodes={nodes}
           onNodesChange={onNodesChange}
           edges={edges}

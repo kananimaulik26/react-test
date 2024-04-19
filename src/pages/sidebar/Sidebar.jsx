@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import DraggableItem from "../../components/DraggableItem";
 
 function Sidebar() {
@@ -6,7 +6,7 @@ function Sidebar() {
     {
       id: "1",
       data: { label: "Command 1" },
-      position: { x: 200, y: 200 },
+      position: { x: 100, y: 0 },
       type: "box",
     },
     {

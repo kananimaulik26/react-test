@@ -8,7 +8,14 @@ function DraggableItem({ item }) {
       type: "box",
       item: () => {
         console.log(`Started dragging: ${item.data}`);
-        return { id: item.id, data: item.data, position: item.position };
+        return {
+          id: item.id,
+          data: item.data,
+          position: item.position,
+          sourcePosition: item.sourcePosition,
+          targetPosition: item.targetPosition,
+          style:item.style,
+        };
       },
       end: (item, monitor) => {
         const didDrop = monitor.didDrop();
@@ -27,13 +34,16 @@ function DraggableItem({ item }) {
   );
 
   return (
-    <div
-      ref={dragRef}
-      style={{ opacity: isDragging ? 0.5 : 1, cursor: "move" }}
-      className="gap-3 m-3 p-3 cursor-pointer border border-black text-xl items-center justify-center rounded-lg"
-    >
-      {item.data.label}
-    </div>
+    <>
+      <div
+        ref={dragRef}
+        style={{ opacity: isDragging ? 0.5 : 1, cursor: "move" }}
+        className="gap-3 m-3 p-3 cursor-pointer border border-black text-xl items-center justify-center rounded-lg"
+      >
+        {item.data.label}
+      </div>
+    </>
   );
 }
+
 export default DraggableItem;

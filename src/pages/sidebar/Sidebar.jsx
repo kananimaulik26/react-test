@@ -1,6 +1,5 @@
 import React from "react";
 import DraggableItem from "../../components/DraggableItem";
-import { Position } from "reactflow";
 
 function Sidebar() {
   const initialNodes = [
@@ -112,7 +111,7 @@ function Sidebar() {
         <div className="text-3xl">Actions</div>
       </div>
       {initialNodes.map((item) => (
-        <DraggableItem key={item.id} item={item} position={item.position} />
+        <DraggableItem key={item.id} item={item} />
       ))}
     </>
   );
